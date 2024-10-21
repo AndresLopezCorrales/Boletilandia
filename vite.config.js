@@ -8,7 +8,8 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/css/home-style.css',
                 'resources/js/app.js',
-                'resources/js/get-attributes.js'
+                'resources/js/get-attributes.js',
+                'resources/js/comprar-boleto.js'
             ],
             refresh: true,
         }),

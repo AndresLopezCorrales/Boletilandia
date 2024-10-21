@@ -72,3 +72,4 @@ Route::get('home-pagina_eventos/{evento}',[HomeController::class, 'mostrarPagina
 
 Route::post('home-seleccionboleto_eventos/{evento}', [BoletoController::class, 'mostrarPantallaBoletos']);
 
+Route::post('/comprar-asiento', [BoletoController::class, 'comprarAsiento']);

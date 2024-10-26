@@ -1,3 +1,5 @@
+import { disponibilidadAsientos } from '/resources/js/get-attributes.js'; // Importar la variable
+
 document.addEventListener('click', (event) => {
     if (event.target.id === 'comprarBtn') {
 
@@ -6,6 +8,21 @@ document.addEventListener('click', (event) => {
         let precio = event.target.getAttribute('data-precio');
         let visi = event.target.getAttribute('data-visi');
         let idEvento = document.getElementById('mostrarInfoAsiento').getAttribute('data-idEvento');
+        //let asientoElement = document.querySelector(`.asiento[data-asiento='${asiento}'][data-seccion='${seccion}']`);
+
+        // Cambiar la disponibilidad del asiento
+        const claveAsiento = `${seccion}_${asiento}`; // Crear una clave combinando sección y asiento
+        disponibilidadAsientos[claveAsiento] = false; // Marcar como no disponible
+
+        // Guardar en localStorage con el id del evento
+        localStorage.setItem(`disponibilidadAsientos_${idEvento}`, JSON.stringify(disponibilidadAsientos)); // Guardar en localStorage
+
+        // Cambiar el color del círculo en el SVG
+        let asientoElement = document.querySelector(`.asiento[xlink\\:data-asiento='${asiento}'][xlink\\:data-seccion='${seccion}'] circle`);
+        if (asientoElement) {
+            asientoElement.classList.add('desactivado'); // Cambiar visualmente el estado del asiento
+        }
+
 
         var form = document.createElement('form');
         form.style.display = 'none';
@@ -59,6 +76,8 @@ document.addEventListener('click', (event) => {
 
         // Enviar el formulario
         form.submit();
+
+
 
 
     }

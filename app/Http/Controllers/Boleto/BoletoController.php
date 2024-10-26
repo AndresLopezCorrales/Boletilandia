@@ -35,6 +35,19 @@ class BoletoController extends Controller
             'precio' => $validated['precio'],
             'info-visibilidad' => $validated['info-visibilidad'],
         ]);
+
+        $asientoExistente = Asiento::where([
+            'seccion_id' => $seccion->id,
+            'numero_asiento' => $validated['numero_asiento'],
+            'disponibilidad_asiento' => 0 // Chequear si ya está ocupado
+        ])->exists();
+    
+        if ($asientoExistente) {
+            // Redireccionar con un mensaje de error
+            return redirect('/home');
+            
+        }
+
     
         // Guardar el asiento
         Asiento::create([

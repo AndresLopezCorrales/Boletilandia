@@ -58,7 +58,11 @@ class BoletoController extends Controller
     
         // Redireccionar o devolver una respuesta exitosa
         //PONER QUE SE COMPRó exitosamente
-        return redirect('/home');
+        //return redirect('/home');
+
+        session(['evento_id' => $validated['id_evento']]);
+
+        return redirect('/home')->with('message', 'boleto comprado');
     
     }
     

@@ -1,5 +1,6 @@
 import { disponibilidadAsientos } from '/resources/js/get-attributes.js'; // Importar la variable
 
+
 document.addEventListener('click', (event) => {
     if (event.target.id === 'comprarBtn') {
 
@@ -76,6 +77,8 @@ document.addEventListener('click', (event) => {
 
         // Enviar el formulario
         form.submit();
+
+
 
 
 

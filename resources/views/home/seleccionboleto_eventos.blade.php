@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Document</title>
     @vite(['/resources/css/home-style.css', '/resources/js/get-attributes.js', '/resources/js/comprar-boleto.js'])
+
 </head>
 <body>
     
@@ -153,7 +154,6 @@
 
 
     </div>
-
 
 </body>
 </html>

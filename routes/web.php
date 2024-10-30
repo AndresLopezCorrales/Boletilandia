@@ -3,6 +3,7 @@
 use App\Models\Evento;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Pdf\PdfController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Admin\EventoController;
 use App\Http\Controllers\Boleto\BoletoController;
@@ -73,3 +74,6 @@ Route::get('home-pagina_eventos/{evento}',[HomeController::class, 'mostrarPagina
 Route::post('home-seleccionboleto_eventos/{evento}', [BoletoController::class, 'mostrarPantallaBoletos']);
 
 Route::post('/comprar-asiento', [BoletoController::class, 'comprarAsiento']);
+
+//Generar Pdf
+Route::get('/pdf-boleto/{evento}', [PdfController::class, 'generarPdf']);

@@ -6,10 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Document</title>
+    
     @vite(['/resources/css/home-style.css', '/resources/js/get-attributes.js', '/resources/js/comprar-boleto.js'])
 
 </head>
 <body>
+    
+    <!--Obtener Datos del BoletoController:MostrarPantallaBoletos para usarlos en get-attributes.JS-->
+    <script>
+        window.eventoData = {
+            evento: @json($evento),
+            secciones: @json($secciones)
+        };
+    </script>
+        
+    
     
     <div>
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>

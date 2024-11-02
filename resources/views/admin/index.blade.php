@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     <x-app-layout>
@@ -32,9 +34,24 @@
         <button type="submit">Agregar Evento</button>
     </form>
 
-    <form action="/admin-ver_eventos" class="admin-forms">
+    @if (Session::has('Alerta_Exito'))
+    <script>
+        Swal.fire({
+            title: "Exito!",
+            text: "{{ session('Alerta_Exito') }}",
+            icon: "success"
+        });
+    </script>
+    @endif
+    
+    <form action="/admin-ver_eventos" class="admin-forms" method="GET">
         @csrf
         <button>Ver eventos</button>
+    </form>
+
+    <form action="/admin-grafica_eventos" class="admin-forms" method="GET">
+        @csrf
+        <button>Ventas de Eventos</button>
     </form>
     
     

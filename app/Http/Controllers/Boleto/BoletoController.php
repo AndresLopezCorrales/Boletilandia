@@ -12,7 +12,11 @@ class BoletoController extends Controller
 {
     public function mostrarPantallaBoletos(Evento $evento){
 
-        return view('/home.seleccionboleto_eventos', compact('evento'));
+        // Obtener las secciones del evento y sus asientos disponibles
+        $secciones = Seccion::where('evento_id', $evento->id)->with('asientos')->get();
+
+        return view('/home.seleccionboleto_eventos', compact('evento', 'secciones'));
+
 
     }
 
@@ -60,7 +64,9 @@ class BoletoController extends Controller
         //PONER QUE SE COMPRó exitosamente
         //return redirect('/home');
 
-        session(['evento_id' => $validated['id_evento']]);
+        session(['evento_id' => $validated['id_evento'],
+                    'letra_seccion' => $validated['letra_seccion'],
+                    'numero_asiento' => $validated['numero_asiento']]);
 
         return redirect('/home')->with('message', 'boleto comprado');
     

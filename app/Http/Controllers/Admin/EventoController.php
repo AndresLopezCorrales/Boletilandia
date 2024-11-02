@@ -27,11 +27,13 @@ class EventoController extends Controller
     // Crear el evento en la base de datos
     Evento::create($validatedData);
 
-    return redirect()->back()->with('success', 'Evento agregado exitosamente');
+    return redirect()->back()->with('Alerta_Exito', 'Evento agregado exitosamente');
 }
 
     public function eliminarEvento (Evento $evento){
 
+
+        //Eliminar Evento al final 
         $evento->delete();
 
         return redirect('admin-ver_eventos');
@@ -64,8 +66,10 @@ class EventoController extends Controller
         $validatedData['LugarEvento'] = strip_tags($validatedData['LugarEvento']);
 
         $evento->update($validatedData);
+
+        //session(['IdEvento' => $evento->id]);
     
-        return redirect('admin-ver_eventos');
+        return redirect('admin-ver_eventos')->with('Alerta_Exito', 'Se editó correctamente');
 
         
 

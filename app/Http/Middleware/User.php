@@ -4,9 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
-class Admin
+use Symfony\Component\HttpFoundation\Response;
+
+class User
 {
     /**
      * Handle an incoming request.
@@ -15,11 +16,12 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->usertype == 'admin'){
+        
+        if (Auth::user()->usertype == 'user'){
             return $next($request);
         }
 
         abort(401);
-        
+
     }
 }

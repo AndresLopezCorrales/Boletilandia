@@ -1,36 +1,61 @@
-export let disponibilidadAsientos = {};
-
-// Inicializar los asientos en disponibilidad
 document.addEventListener('DOMContentLoaded', () => {
-    const idEvento = document.getElementById('mostrarInfoAsiento').getAttribute('data-idEvento');
+    // Acceder a los datos que se inyectaron en el objeto global
+    const evento = window.eventoData.evento;
+    const secciones = window.eventoData.secciones;
+    let disponibilidadAsientos = {};
 
-    let savedDisponibilidad = localStorage.getItem(`disponibilidadAsientos_${idEvento}`);
-    if (savedDisponibilidad) {
-        disponibilidadAsientos = JSON.parse(savedDisponibilidad);
+    // Imprimir en la consola la información de la sección y los asientos
+    console.log(`Evento: ${evento.NombreEvento}`); // Imprime el nombre del evento
 
-        // Actualizar los colores de los círculos según la disponibilidad
-        for (const [claveAsiento, disponible] of Object.entries(disponibilidadAsientos)) {
-            if (!disponible) { // Si no está disponible
-                let [seccion, numeroAsiento] = claveAsiento.split('_'); // Descomponer la clave en sección y asiento
-                let asientoElement = document.querySelector(`.asiento[xlink\\:data-asiento='${numeroAsiento}'][xlink\\:data-seccion='${seccion}'] circle`);
-                if (asientoElement) {
-                    asientoElement.setAttribute('fill', 'red'); // Cambiar el color del círculo a rojo
+
+    // Iterar sobre las secciones
+    secciones.forEach(seccion => {
+        //console.log(`Sección: ${seccion.letra_seccion}`); // Imprime la letra de la sección
+        let letraSeccion = `${seccion.letra_seccion}`;
+
+        seccion.asientos.forEach(asiento => {
+            //console.log(`Asiento: ${asiento.numero_asiento}`); // Imprime el número de asiento y su disponibilidad
+            let numeroAsiento = `${asiento.numero_asiento}`;
+
+            let asientoElement = document.querySelector(`.asiento[xlink\\:data-asiento='${numeroAsiento}'][xlink\\:data-seccion='${letraSeccion}'] circle`);
+            console.log(asientoElement);
+            if (asientoElement) {
+                asientoElement.classList.add('desactivado');
+
+
+                disponibilidadAsientos[`${letraSeccion}_${numeroAsiento}`] = false;
+
+            } else {
+                disponibilidadAsientos[`${letraSeccion}_${numeroAsiento}`] = true;
+
+            }
+        });
+
+    });
+
+    /*
+    asientoElement.setAttribute('fill', 'red'); // Cambiar el color del círculo a rojo
+                    }
                 }
             }
         }
-    }
+    
+        // Inicializar los asientos en disponibilidad
+        document.querySelectorAll('.asiento').forEach(asiento => {
+            const numeroAsiento = asiento.getAttribute('xlink:data-asiento');
+            const seccion = asiento.getAttribute('xlink:data-seccion'); // Obtener la sección del asiento
+            const claveAsiento = `${seccion}_${numeroAsiento}`; // Crear clave
+    
+            if (!(claveAsiento in disponibilidadAsientos)) {
+                disponibilidadAsientos[claveAsiento] = true; // 'true' significa disponible
+            }
+        });
+        */
 
-    // Inicializar los asientos en disponibilidad
-    document.querySelectorAll('.asiento').forEach(asiento => {
-        const numeroAsiento = asiento.getAttribute('xlink:data-asiento');
-        const seccion = asiento.getAttribute('xlink:data-seccion'); // Obtener la sección del asiento
-        const claveAsiento = `${seccion}_${numeroAsiento}`; // Crear clave
 
-        if (!(claveAsiento in disponibilidadAsientos)) {
-            disponibilidadAsientos[claveAsiento] = true; // 'true' significa disponible
-        }
-    });
 
+
+    //------------------Comienza el Get Attributes-------------------------
     var asiento = document.querySelectorAll(".asiento");
 
 
@@ -45,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let visi = asiento.getAttribute('xlink:data-visi');
 
             const claveAsiento = `${seccion}_${numeroAsiento}`;
-            if (disponibilidadAsientos[claveAsiento]) {
+            if (!disponibilidadAsientos[claveAsiento]) {
                 // Mostrar la información en el modal
                 document.getElementById('mostrarInfoAsiento').innerHTML = `
                 <p>Asiento: ${title}</p>

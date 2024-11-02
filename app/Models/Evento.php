@@ -17,4 +17,19 @@ class Evento extends Model
         'imagen_path'
     ];
 
+    public function secciones()
+    {
+        return $this->hasMany(Seccion::class, 'evento_id');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($evento) {
+            $evento->secciones()->each(function ($seccion) {
+                $seccion->delete(); // Elimina cada sección, activando la eliminación en cascada de los asientos
+            });
+        });
+    }
 }

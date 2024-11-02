@@ -8,6 +8,7 @@
 </head>
 <body>
     
+    <div>
             <h3>{{ $evento->NombreEvento }}</h3>
                 <p><strong>Fecha:</strong> {{ $evento->FechaEvento }}</p>
                 <p><strong>Dirección:</strong> {{ $evento->DireccionEvento }}</p>
@@ -20,6 +21,7 @@
                     @csrf
                     <button>Comprar</button>
                 </form>
+            </div>
 
 </body>
 </html>

@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
 
@@ -15,19 +16,22 @@
 
     <h1>USER</h1>
 
+    
+    
+
     <div class="posters-container" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
         @if($events->isNotEmpty())
             @foreach($events as $event)
             <a href="/home-pagina_eventos/{{$event->id}}">
-                <div class="poster">
+                <div class="">
                     <h3>{{ $event->NombreEvento }}</h3>
                     <p><strong>Fecha:</strong> {{ $event->FechaEvento }}</p>
                     <p><strong>Dirección:</strong> {{ $event->DireccionEvento }}</p>
                     <p><strong>Lugar:</strong> {{ $event->LugarEvento }}</p>
                     @if($event->imagen_path)
-                        <img src="{{ asset('storage/' . $event->imagen_path) }}" alt="{{ $event->NombreEvento }}">
+                        <img class="w-25 h-16" src="{{ asset('storage/' . $event->imagen_path) }}" alt="{{ $event->NombreEvento }}">
                     @endif
-                </div>
+            </div>
             </a>
             @endforeach
         @else

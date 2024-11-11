@@ -44,5 +44,14 @@
                 </x-button>
             </div>
         </form>
+
+        <div class="flex items-center justify-center mt-4">
+            <div>
+                <p class="text-gray-300 pr-2">No tienes cuenta?</p>
+            </div>
+            <div>
+                <a href="/register"><p class="mr-2 text-white text-bold hover:text-gray-300">Crea tu cuenta</p></a>
+            </div>
+        </div>
     </x-authentication-card>
 </x-guest-layout>

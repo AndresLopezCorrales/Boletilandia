@@ -17,7 +17,7 @@
                 @endif
         </div>
         <div class="min-h-screen w-[34.3125rem] m-8 flex flex-col flex-wrap justify-start items-center rounded-lg border-2 border-blue-950 hover:border-blue-600 hover:bg-gray-100 group">
-            <h1 class="text-6xl text-bold mt-14 group-hover:text-blue-900">{{ $evento->NombreEvento }}</h1>
+            <h1 class="text-center text-6xl text-bold mt-14 group-hover:text-blue-900">{{ $evento->NombreEvento }}</h1>
             <div class="mt-20">
                 <p class="text-center text-gray-900 text-3xl mb-2"><strong>Dirección:</strong><br> {{ $evento->DireccionEvento }}</p>
                 <p class="text-center text-gray-900 text-3xl mb-2"><strong>Lugar:</strong><br> {{ $evento->LugarEvento }}</p> 

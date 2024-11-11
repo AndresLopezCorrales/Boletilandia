@@ -69,7 +69,7 @@
         var eventoId = {{ Session::get('evento_id') }};
         window.Swal.fire({
             title: "Comprado!",
-            text: "Boleto Comprado",
+            text: "Boleto Comprado. Descarga tu boleto dando 'OK'",
             icon: "success"
             }).then((result) =>{
                 if(result.isConfirmed){

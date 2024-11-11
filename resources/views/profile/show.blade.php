@@ -1,8 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <div class="flex flex-row">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight mr-4">
             {{ __('Profile') }}
         </h2>
+
+        <a href="/home">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Home') }}
+            </h2>
+        </a>
+    </div>
     </x-slot>
 
     <div>

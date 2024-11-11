@@ -33,35 +33,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 
-    /*
-    asientoElement.setAttribute('fill', 'red'); // Cambiar el color del círculo a rojo
-                    }
-                }
-            }
-        }
-    
-        // Inicializar los asientos en disponibilidad
-        document.querySelectorAll('.asiento').forEach(asiento => {
-            const numeroAsiento = asiento.getAttribute('xlink:data-asiento');
-            const seccion = asiento.getAttribute('xlink:data-seccion'); // Obtener la sección del asiento
-            const claveAsiento = `${seccion}_${numeroAsiento}`; // Crear clave
-    
-            if (!(claveAsiento in disponibilidadAsientos)) {
-                disponibilidadAsientos[claveAsiento] = true; // 'true' significa disponible
-            }
-        });
-        */
 
 
 
 
     //------------------Comienza el Get Attributes-------------------------
     var asiento = document.querySelectorAll(".asiento");
-
+    var asientoPintado = null;
 
     asiento.forEach(asiento => {
         asiento.addEventListener('click', (event) => {
             event.preventDefault();
+
+            if (asientoPintado) {
+                asientoPintado.style.fill = "";
+            }
+
+            asiento.style.fill = "green";
+
+            asientoPintado = asiento;
+
 
             let title = asiento.getAttribute('xlink:title');
             let seccion = asiento.getAttribute('xlink:data-seccion');
@@ -73,11 +64,21 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!disponibilidadAsientos[claveAsiento]) {
                 // Mostrar la información en el modal
                 document.getElementById('mostrarInfoAsiento').innerHTML = `
-                <p>Asiento: ${title}</p>
-                <p>Sección: ${seccion}</p>
-                <p>Precio: $${precio}</p>
-                <p>Visibilidad: ${visi}</p>
-                <button id="comprarBtn" data-asiento="${numeroAsiento}" data-seccion="${seccion}" data-precio="${precio}" data-visi="${visi}">
+                <h1 class="text-6xl text-bold mt-14 group-hover:text-blue-900">Asiento: ${title}</h1>
+
+                <div class="mt-20">
+                    <p class="text-center text-gray-900 text-3xl mb-2">Sección:<br> ${seccion}</p>
+                    <p class="text-center text-blue-950 text-3xl mb-2">Precio:<br> $${precio}</p>
+                    <p class="text-center text-gray-800 text-2xl mb-8">Visibilidad:<br> ${visi}</p> 
+                </div>
+                
+                
+                <button id="comprarBtn" 
+                        data-asiento="${numeroAsiento}" 
+                        data-seccion="${seccion}" 
+                        data-precio="${precio}" 
+                        data-visi="${visi}"
+                        class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                     Comprar
                 </button>
             `;
@@ -85,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('mostrarInfoAsiento').innerHTML = `
                 <p>Asiento: NO DISPONIBLE</p>`;
             }
-
 
 
 

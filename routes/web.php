@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use App\Models\Evento;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -34,7 +35,13 @@ Route::get('/home', function () {
             return view('admin.index');
 
         }else if($userType == 'user'){
-            $events = Evento::all();
+            $fechaActual = Carbon::now()->format('Y-m-d');
+
+            $events = Evento::where('FechaEvento', '>=', $fechaActual)
+                        ->orderBy('FechaEvento', 'asc')
+                        ->get();
+
+            //$events = Evento::all();
 
             // Enviar los eventos a la vista
             return view('home.index', compact('events'));

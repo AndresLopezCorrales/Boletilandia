@@ -9,29 +9,54 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
-<body>
+<body class="bg-gray-50">
 
-    <x-app-layout>
-    </x-app-layout>
+    @include('home.nav_user')
 
-    <h1>USER</h1>
+    <div class="logos pb-4 overflow-hidden flex justify-start items-center bg-slate-900 whitespace-nowrap group">
+        <!-- Contenedor de las imágenes -->
+        <div class="logos-slide flex animate-slide m-2 group-hover:animation-paused">
+            <img src="{{asset('storage/artistas/humbe.jpg')}}" alt="Imagen 1" class="rounded-3xl h-48 min-w-40 ml-8 hover:scale-110 transition-transform duration-300">
+            <img src="{{asset('storage/artistas/wos.jpg')}}" alt="Imagen 2" class="rounded-3xl h-48 min-w-40 ml-8 hover:scale-110 transition-transform duration-300">
+            <img src="{{asset('storage/artistas/billie.jpg')}}" alt="Imagen 3" class="rounded-3xl h-48 min-w-40 ml-8 hover:scale-110 transition-transform duration-300">
+            <img src="{{asset('storage/artistas/radioheads.jpg')}}" alt="Imagen 2" class="rounded-3xl h-48 min-w-40 ml-8 hover:scale-110 transition-transform duration-300">
+            <img src="{{asset('storage/artistas/nsqk.jpg')}}" alt="Imagen 3" class="rounded-3xl h-48 min-w-40 ml-8 hover:scale-110 transition-transform duration-300">
+            <img src="{{asset('storage/artistas/exo.jpg')}}" alt="Imagen 2" class="rounded-3xl h-48 min-w-40 ml-8 hover:scale-110 transition-transform duration-300">
+            <img src="{{asset('storage/artistas/alvaro.jpg')}}" alt="Imagen 3" class="rounded-3xl h-48 min-w-40 ml-8 hover:scale-110 transition-transform duration-300">
+        </div>
 
-    
-    
+        <!-- DUPLICADO -->
+        <div class="logos-slide flex animate-slide m-2 group-hover:animation-paused">
+            <img src="{{asset('storage/artistas/humbe.jpg')}}" alt="Imagen 1" class="rounded-3xl h-48 min-w-40 ml-8 hover:scale-110 transition-transform duration-300">
+            <img src="{{asset('storage/artistas/wos.jpg')}}" alt="Imagen 2" class="rounded-3xl h-48 min-w-40 ml-8 hover:scale-110 transition-transform duration-300">
+            <img src="{{asset('storage/artistas/billie.jpg')}}" alt="Imagen 3" class="rounded-3xl h-48 min-w-40 ml-8 hover:scale-110 transition-transform duration-300">
+            <img src="{{asset('storage/artistas/radioheads.jpg')}}" alt="Imagen 2" class="rounded-3xl h-48 min-w-40 ml-8 hover:scale-110 transition-transform duration-300">
+            <img src="{{asset('storage/artistas/nsqk.jpg')}}" alt="Imagen 3" class="rounded-3xl h-48 min-w-40 ml-8 hover:scale-110 transition-transform duration-300">
+            <img src="{{asset('storage/artistas/exo.jpg')}}" alt="Imagen 2" class="rounded-3xl h-48 min-w-40 ml-8 hover:scale-110 transition-transform duration-300">
+            <img src="{{asset('storage/artistas/alvaro.jpg')}}" alt="Imagen 3" class="rounded-3xl h-48 min-w-40 ml-8 hover:scale-110 transition-transform duration-300">
+        </div>
+    </div>
 
-    <div class="posters-container" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+    <div class="flex flex-col justify-center items-center">
+        <div class="px-16 my-16 text-center text-pretty">
+            <h1 class="text-6xl text-blue-700">Eventos</h1>
+        </div>
+    </div>
+
+    <div class="posters-container min-h-screen flex flex-wrap justify-center items-center">
         @if($events->isNotEmpty())
             @foreach($events as $event)
-            <a href="/home-pagina_eventos/{{$event->id}}">
+            <a href="/home-pagina_eventos/{{$event->id}}" class="p-4 mx-10 my-10 border-2 rounded-3xl border-blue-700 hover:bg-gray-100">
                 <div class="">
-                    <h3>{{ $event->NombreEvento }}</h3>
-                    <p><strong>Fecha:</strong> {{ $event->FechaEvento }}</p>
-                    <p><strong>Dirección:</strong> {{ $event->DireccionEvento }}</p>
-                    <p><strong>Lugar:</strong> {{ $event->LugarEvento }}</p>
+                    <h2 class="text-3xl text-center pb-2 bold font-bold">{{ $event->NombreEvento }}</h2>
                     @if($event->imagen_path)
-                        <img class="w-25 h-16" src="{{ asset('storage/' . $event->imagen_path) }}" alt="{{ $event->NombreEvento }}">
+                        <img class="w-80 h-80 pb-3 rounded-lg hover:brightness-110" src="{{ asset('storage/' . $event->imagen_path) }}" alt="{{ $event->NombreEvento }}">
                     @endif
-            </div>
+                    <p class="text-center font-bold pb-3">{{ $event->LugarEvento }}</p>
+                    <p class="text-center text-gray-500">{{ $event->FechaEvento }}</p>
+                    {{--<p><strong>Dirección:</strong> {{ $event->DireccionEvento }}</p>--}}
+                    
+                </div>
             </a>
             @endforeach
         @else

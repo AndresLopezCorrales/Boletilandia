@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    @vite(['/resources/css/galeria-style.css'])
+    @vite(['resources/css/app.css', '/resources/css/galeria-style.css'])
 </head>
 <body>
-    <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
+    
                         @if (Route::has('login'))
-                            <nav class="-mx-3 flex flex-1 justify-end">
+                            
                                 @auth
                                 <!--Mandar a la pagina inicial-->
                                 <script>
@@ -18,7 +18,9 @@
                                 </script>
                                 @else
 
-                                <div class="gallery-wrap">
+                                <div class="flex min-h-screen justify-center items-center">
+                                
+                                <div class="gallery-wrap w-[60%] min-h-screen">
                                     <div class="item item-1" style="background-image: url('{{ asset('storage/artistas/billie.jpg') }}');">
                             
                                     </div>
@@ -34,25 +36,45 @@
                                     <div class="item item-5" style="background-image: url('{{ asset('storage/artistas/wos.jpg') }}');">
                                     </div>
                                 </div>
+                                
+                                
+                                <div class="register_login bg-gray-500 w-[70%] min-h-screen bg-center bg-cover bg-no-repeat flex flex-col items-center justify-center transition-all duration-300 filter grayscale hover:grayscale-0" style="background-image: url('{{ asset('storage/conciertos/concert.jpg') }}');">
+                                <div class="mb-36 ml-3 mr-3 backdrop-blur-md bg-white/20 rounded-lg p-2">
+                                    <h1 class="text-4xl font-semibold text-white">BOLETILANDIA</h1>
                                 </div>
+                                    <div class="w-full text-center">
                                     <a
                                         href="{{ route('login') }}"
-                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                                     >
+                                    <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                                        <span class="relative px-6 py-3.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                                         Log in
+                                        </span>
+                                        </button>
                                     </a>
+                                </div>
+
+                                    
 
                                     @if (Route::has('register'))
-                                        <a
+                                    <div class="w-full text-center mb-36">
+                                            <a
                                             href="{{ route('register') }}"
-                                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                                         >
-                                            Register
+                                        <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
+                                            <span class="relative px-6 py-3.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                                            Sign in
+                                            </span>
+                                            </button>
                                         </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
                                     @endif
                                 @endauth
-                            </nav>
+                            
                         @endif
-                    </header>
+                    
 </body>
 </html>

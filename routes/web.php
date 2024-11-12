@@ -62,7 +62,11 @@ Route::get('/admin-ver_eventos', function(){
         $userType = Auth()->user()->usertype;
 
         if($userType == 'admin'){
-            $events = Evento::all();
+            $fechaActual = Carbon::now()->format('Y-m-d');
+
+            $events = Evento::where('FechaEvento', '>=', $fechaActual)
+                        ->orderBy('FechaEvento', 'asc')
+                        ->get();
 
             // Enviar los eventos a la vista
             return view('admin.ver_eventos', compact('events'));

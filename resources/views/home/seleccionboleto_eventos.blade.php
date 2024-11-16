@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Document</title>
+    @include('head')
     
     @vite([ '/resources/css/app.css', '/resources/js/get-attributes.js', '/resources/js/comprar-boleto.js', '/resources/css/home-style.css',])
 

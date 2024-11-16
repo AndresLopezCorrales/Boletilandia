@@ -1,3 +1,6 @@
+<head>
+    @include('head')
+</head>
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">

@@ -19,3 +19,9 @@
 .item:hover {
     flex: 7;
 }
+
+@media (max-width: 756px) {
+    .gallery-wrap {
+        flex-direction: column;
+    }
+}

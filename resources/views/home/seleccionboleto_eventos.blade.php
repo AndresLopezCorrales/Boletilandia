@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Document</title>
+    <title>Comprar asiento {{$evento->NombreEvento}}</title>
     @include('head')
     
     @vite([ '/resources/css/app.css', '/resources/js/get-attributes.js', '/resources/js/comprar-boleto.js', '/resources/css/home-style.css',])

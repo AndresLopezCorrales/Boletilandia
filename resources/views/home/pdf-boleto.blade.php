@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=}, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    @include('head')
+    <title>Boleto {{$evento->id}}. {{Session::get('letra_seccion')}} - {{Session::get('numero_asiento')}}</title>
     <style>
 
         #evento, #usuario, #asiento, #nota{

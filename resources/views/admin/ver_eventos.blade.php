@@ -5,23 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Eventos</title>
-    @include('head')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @include('head') {{--Imagen tab pagina--}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> {{--Sweet Alert JS--}}
 
 </head>
 <body class="bg-gray-50">
 
-    @include('admin.nav_admin')
+    @include('admin.nav_admin') {{--Nav Bar Admin--}}
 
+    {{--Si existe 1 evento se mostrará en esta página--}}
     @if($events->count() > 0)
+
+    {{--Titulo 'Eventos Existentes'--}}
     <div class="flex flex-col justify-center items-center">
         <div class="px-16 my-16 text-center text-pretty">
             <h1 class="text-6xl text-blue-700">Eventos Existentes</h1>
         </div>
     </div>
 
+    {{--Mostrar eventos existentes en la base de datos--}}
     <div class="min-h-screen flex flex-wrap justify-center items-center">
-    
         @foreach($events as $event)
             <div class="evento p-4 mx-10 my-10 border-2 rounded-3xl border-blue-700 hover:bg-gray-100">
                 <h2 class="text-3xl mb-2">{{ $event->NombreEvento }}</h2>
@@ -32,12 +35,13 @@
                     <img src="{{ asset('storage/' . $event->imagen_path) }}" alt="{{ $event->NombreEvento }}" class="w-80 h-80">
                 @endif
                 <div class="flex flex-col justify-start items-start">
+                    {{--Boton para editar y mandarlo a la página de edición--}}
                     <a href="/admin-editar_eventos/{{$event->id}}">
                         <div class="p-1 px-2 mt-2 mb-1 bg-blue-200 text-gray-950 rounded-3xl border-2 border-blue-700 hover:bg-blue-700 hover:text-white hover:border-blue-950">
                             Editar
                         </div>
                     </a>    
-
+                    {{--Botón para eliminar un evento--}}
                     <div class="p-1 px-2 my-1 bg-red-200 text-gray-950 rounded-3xl border-2 border-red-700 hover:bg-red-700 hover:text-white hover:border-red-950">
                         <form id="deleteForm" method="POST">
                             @csrf
@@ -49,12 +53,14 @@
             </div>
         
         @endforeach
+
+    {{--Si no hay eventos pondrá 'No hay eventos disponibles'--}}    
     @else
         <p>No hay eventos disponibles.</p>
     @endif
-</div>
+    </div>
 
-
+    {{--Sweet alert para confirmar el eliminar de un evento--}}
     <script>
         function confirmDelete(eventId) {
             Swal.fire({
@@ -79,6 +85,7 @@
         }
     </script>
 
+    {{--Sweet alert para confirmar que se editó bien la información del evento--}}
     @if (Session::has('Alerta_Exito'))
     <script>
         Swal.fire({

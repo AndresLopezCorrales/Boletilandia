@@ -1,11 +1,11 @@
+/*CSS para galería del Home NO AUTH*/
+
 .gallery-wrap {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 50vh;
 }
-
-
 
 .item {
     flex: 2;

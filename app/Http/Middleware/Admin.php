@@ -15,6 +15,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
+        /*Si no se esta loggeado como Admin, te mandará un mensaje de RESTRICCION*/
         if (Auth::user()->usertype == 'admin'){
             return $next($request);
         }

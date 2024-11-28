@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Evento {{$evento->NombreEvento}}</title>
-    @include('head')
+    @include('head') {{--Imagen tab pagina--}}
 </head>
 <body class="bg-gray-50">
     
-    @include('home.nav_user')
+    @include('home.nav_user') {{--Incluir Nav bar de usuario--}}
 
     <div class="min-h-screen flex flex-row flex-wrap justify-center items-center">
+        {{--Imagen de evento--}}
         <div class="">
             @if($evento->imagen_path)
                     <img class="h-[40.46875rem] w-[34.3125rem] p-4 rounded-xl" src="{{ asset('storage/' . $evento->imagen_path) }}" alt="{{ $evento->NombreEvento }}">
                 @endif
         </div>
+        {{--Informacion de evento + botón para comprar asiento--}}
         <div class="min-h-screen w-[34.3125rem] m-8 flex flex-col flex-wrap justify-start items-center rounded-lg border-2 border-blue-950 hover:border-blue-600 hover:bg-gray-100 group">
             <h1 class="text-center text-6xl text-bold mt-14 group-hover:text-blue-900">{{ $evento->NombreEvento }}</h1>
             <div class="mt-20">

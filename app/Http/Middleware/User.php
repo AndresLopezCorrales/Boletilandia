@@ -16,7 +16,7 @@ class User
      */
     public function handle(Request $request, Closure $next): Response
     {
-        
+        /*Si no se esta loggeado como user, te mandará un mensaje de RESTRICCION*/
         if (Auth::user()->usertype == 'user'){
             return $next($request);
         }

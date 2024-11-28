@@ -31,13 +31,10 @@ class EventoController extends Controller
 }
 
     public function eliminarEvento (Evento $evento){
-
-
-        //Eliminar Evento al final 
+        //Eliminar Evento
         $evento->delete();
 
         return redirect('admin-ver_eventos');
-
     }
 
     public function mostrarPantallaEdicion(Evento $evento){
@@ -51,7 +48,7 @@ class EventoController extends Controller
             'FechaEvento' => 'required|date',
             'DireccionEvento' => 'required|string|max:255',
             'LugarEvento' => 'required|string|max:255',
-            'imagen_path' => 'nullable|image|max:2048', // Manejo de imágenes
+            'imagen_path' => 'nullable|image|max:2048',
         ]);
     
         // Guardar la imagen, si es proporcionada
@@ -66,13 +63,8 @@ class EventoController extends Controller
         $validatedData['LugarEvento'] = strip_tags($validatedData['LugarEvento']);
 
         $evento->update($validatedData);
-
-        //session(['IdEvento' => $evento->id]);
     
         return redirect('admin-ver_eventos')->with('Alerta_Exito', 'Se editó correctamente');
-
-        
-
 
     }
 

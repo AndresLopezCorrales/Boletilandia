@@ -6,7 +6,6 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/home-style.css',
-                'resources/css/pdf-style.css',
                 'resources/css/galeria-style.css',
                 'resources/js/app.js',
                 'resources/js/get-attributes.js',

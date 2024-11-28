@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Editar {{$evento->id}}-{{$evento->NombreEvento}} </title>
-    @include('head')
+    @include('head') {{--Imagen tab pagina--}}
 </head>
 <body class="bg-gray-50">
 
-    @include('admin.nav_admin')
+    @include('admin.nav_admin') {{--Nav bar Admin--}}
     
+    {{--Titulo 'Editar evento - NombreEvento'--}}
     <div class="flex flex-col justify-center items-center">
         <div class="px-4 my-4 text-center text-pretty">
             <h1 class="text-6xl text-blue-700">Editar evento - {{$evento->NombreEvento}}</h1>
         </div>
     </div>
 
+    {{--Formulario para editar la información del evento--}}
     <div class="min-h-screen flex flex-col justify-center items-center">
         <div class="px-8 mb-20 bg border-2 border-gray-950 p-4 rounded-3xl hover:border-blue-700 hover:bg-gray-100">
             <form action="/admin-editar_eventos/{{$evento->id}}" method="POST" enctype="multipart/form-data">
@@ -41,11 +43,6 @@
             </form>
         </div>
     </div>
-
-    
-
-    
-
 
 </body>
 </html>

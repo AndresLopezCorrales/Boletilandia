@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Acceder a los datos que se inyectaron en el objeto global
     const evento = window.eventoData.evento;
     const secciones = window.eventoData.secciones;
-    let disponibilidadAsientos = {};
+    let disponibilidadAsientos = {}; //Guardar que asientos estan ocupados
 
     // Imprimir en la consola la información de la sección y los asientos
     console.log(`Evento: ${evento.NombreEvento}`); // Imprime el nombre del evento
@@ -10,19 +10,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Iterar sobre las secciones
     secciones.forEach(seccion => {
-        //console.log(`Sección: ${seccion.letra_seccion}`); // Imprime la letra de la sección
         let letraSeccion = `${seccion.letra_seccion}`;
 
         seccion.asientos.forEach(asiento => {
-            //console.log(`Asiento: ${asiento.numero_asiento}`); // Imprime el número de asiento y su disponibilidad
-            let numeroAsiento = `${asiento.numero_asiento}`;
 
+            let numeroAsiento = `${asiento.numero_asiento}`;
             let asientoElement = document.querySelector(`.asiento[xlink\\:data-asiento='${numeroAsiento}'][xlink\\:data-seccion='${letraSeccion}'] circle`);
+
             console.log(asientoElement);
+
+            //Bloquear asientos y ponerlos en rojo los que ya estan ocupados
             if (asientoElement) {
                 asientoElement.classList.add('desactivado');
-
-
                 disponibilidadAsientos[`${letraSeccion}_${numeroAsiento}`] = false;
 
             } else {
@@ -32,10 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     });
-
-
-
-
 
     //------------------Comienza el Get Attributes-------------------------
     var asiento = document.querySelectorAll(".asiento");
@@ -62,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const claveAsiento = `${seccion}_${numeroAsiento}`;
             if (!disponibilidadAsientos[claveAsiento]) {
-                // Mostrar la información en el modal
+                // Mostrar la información en el DIV de Seleccion Boleto
                 document.getElementById('mostrarInfoAsiento').innerHTML = `
                 <h1 class="text-6xl text-bold mt-14 group-hover:text-blue-900">Asiento: ${title}</h1>
 

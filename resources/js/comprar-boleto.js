@@ -1,3 +1,5 @@
+//Agregar Asiento a la base de datos
+
 document.addEventListener('click', (event) => {
     if (event.target.id === 'comprarBtn') {
 
@@ -52,18 +54,12 @@ document.addEventListener('click', (event) => {
         form.appendChild(inputPrecio);
         form.appendChild(inputVisi);
         form.appendChild(inputIdEvento);
-        form.appendChild(inputToken); // Token CSRF
+        form.appendChild(inputToken);
 
         // Agregar el formulario al documento
         document.body.appendChild(form);
 
         // Enviar el formulario
         form.submit();
-
-
-
-
-
-
     }
 });

@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin Home</title>
-    @include('head')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @include('head') {{--Imagen tab pagina--}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> {{--Sweet Alert JS--}}
 
 </head>
 <body class="bg-gray-50">
     
+    @include('admin.nav_admin') {{--Nav bar Admin--}}
 
-    @include('admin.nav_admin')
-
+    {{--Titulo 'Agrega un evento'--}}
     <div class="min-h-screen flex flex-col justify-center items-center">
         <div class="px-16 my-16 text-center text-pretty">
             <h1 class="text-6xl text-blue-950">Agrega un evento</h1>
         </div>
+
+        {{--Formulario para agregar un evento/concierto a la base de datos --}}
         <div class="px-16 my-16 bg border-2 border-gray-950 p-4 rounded-3xl hover:border-blue-700 hover:bg-gray-100">
             <form action="/admin-eventos" method="POST" enctype="multipart/form-data" class="max-w-sm mx-auto">
                 @csrf
@@ -42,31 +44,16 @@
         </div>
     </div>
 
+    {{--Sweet alert para decir que un evento se agregó con éxito--}}
     @if (Session::has('Alerta_Exito'))
-    <script>
-        Swal.fire({
-            title: "Exito!",
-            text: "{{ session('Alerta_Exito') }}",
-            icon: "success"
-        });
-    </script>
+        <script>
+            Swal.fire({
+                title: "Exito!",
+                text: "{{ session('Alerta_Exito') }}",
+                icon: "success"
+            });
+        </script>
     @endif
-    
-    {{-- 
-    <form action="/admin-ver_eventos" class="admin-forms" method="GET">
-        @csrf
-        <button>Ver eventos</button>
-    </form>
-
-    <form action="/admin-grafica_eventos" class="admin-forms" method="GET">
-        @csrf
-        <button>Ventas de Eventos</button>
-    </form>
-    --}}
-    
-    
-    
-    
 
 </body>
 </html>

@@ -1,3 +1,5 @@
+/*Bloquear circulo-SVG cuando se compra un asiento*/
+
 .desactivado {
     pointer-events: none;
     /* Desactiva los eventos de clic */
